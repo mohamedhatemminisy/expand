@@ -104,4 +104,28 @@ return [
     'part'            => 'Part',
     'subscriber_details' => 'Subscriber details',
     'subscriber_data'  => 'Subscriber data',
+
+
+    'underway'  => 'Underway',
+    'projects'  => 'Projects',
+    'project_name' => 'Project name',
+    'project_status' => 'Project status',
+    'project_num'  => 'Project number',
+    'project_start_date' => 'Project start date',
+    'project_end_date'  => 'Project end date',
+    'project_cost'  => 'Project cost',
+    'archieve'  => 'Archieve',
+    'select_financier' => 'Select financier',
+    'financie_percentage' => 'Financie percentage',
+    'supplier_company' => 'Supplier company',
+    'Contact' => 'Contact',
+
+    'offices_orginzatos' => 'Offices and orginzatos',
+    'office_space' => 'Office space',
+    'banks' => 'Banks',
+    'suppliers'  => 'Suppliers',
+    'orginzations'  => 'Orginzations',
+    'enginering_offices' =>'Enginering offices',
+
+
 ];

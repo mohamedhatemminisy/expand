@@ -104,5 +104,26 @@ return [
     'subscriber_details' => 'تفاصيل المشترك',
     'subscriber_data'   => 'بيانت المستخدم',
 
+    'underway'  => 'قيد التطوير',
+    'projects'  => 'المشاريع',
+    'project_name' => 'اسم المشروع',
+    'project_status' => 'حالة المشروع',
+    'project_num'  => 'رقم المشروع',
+    'project_start_date' => 'تاريخ بداية المشروع',
+    'project_end_date'  => 'تاريخ نهاية المشروع',
+    'project_cost'  => 'تكلفة المشروع',
+    'archieve'  => 'الارشيف',
+    'select_financier' => 'اختر الممول',
+    'financie_percentage' => 'نسبة التمويل',
+    'supplier_company' => 'الشركة الموردة    ',
+    'Contact' => 'جهة التواصل    ',
+
+
+    'offices_orginzatos' => 'المكاتب و الموسسات',
+    'office_space' => 'مكاتب مساحة',
+    'banks' => 'بنوك',
+    'suppliers'  => 'موردين',
+    'orginzations'  => 'مؤسسات',
+    'enginering_offices' => 'مكاتب هندسية',
 
 ];

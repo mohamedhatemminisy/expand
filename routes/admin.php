@@ -52,7 +52,18 @@ Route::group([
         Route::get('subscribe_auto_complete', 'SubscriberController@subscribe_auto_complete')->name('subscribe_auto_complete');
         Route::get('subscribe_info', 'SubscriberController@subscribe_info')->name('subscribe_info');
         
+        Route::get('projects', 'ProjectController@index')->name('projects');
+   
+        Route::get('enginering', 'EngineringController@index')->name('enginering');
+
         
+        Route::get('space', 'SpaceController@index')->name('space');
+
+        Route::get('banks', 'BanksController@index')->name('banks');
+        
+        Route::get('suppliers', 'suppliersController@index')->name('suppliers');
+        
+        Route::get('orginzations', 'orginzationsController@index')->name('orginzations');
 
         Route::group(['prefix' => 'profile'], function () {
             Route::get('edit', 'ProfileController@editProfile')->name('edit.profile');

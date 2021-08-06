@@ -13,6 +13,7 @@ use App\Models\JobTitle;
 use App\Models\Area;
 use App\Models\Region;
 use App\Models\AdminDetail;
+use App\Models\Department;
 use App\Http\Requests\EmployeeRequest;
 use DB;
 
@@ -24,7 +25,8 @@ class EmployeeController extends Controller
         $admin = Admin::get();
         $jobType = JobType::get();
         $jobTitle = JobTitle::get();
-        return view('dashboard.employee.index',compact('city','admin','jobType','jobTitle'));         
+        $departments = Department::get();
+        return view('dashboard.employee.index',compact('city','admin','jobType','jobTitle','departments'));         
     }
 
     public function store_employee(EmployeeRequest $request){

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileRequest;
 use App\Models\Admin;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller

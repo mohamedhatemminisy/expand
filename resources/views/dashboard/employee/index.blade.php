@@ -205,6 +205,10 @@
                                                         <option> اختر </option>
                                                         <option value="0">  {{trans('admin.without')}} </option>
 
+                                                        @foreach($departments as $department)
+                                                        <option value="{{$department->id}}">  {{$department->name}} </option>
+                                                        @endforeach
+
                                               
                                                     </select>
                                                     <div class="input-group-append hide">
@@ -317,11 +321,11 @@
                                                             <input id="Salary" name="Salary" class="form-control numFeild " placeholder="00.00" style="    border-radius: 0rem !important;width: 30%;height: 33px !important;">
                                                             <select id="CurrencyID" name="CurrencyID" type="text" class="form-control" style="width: 85px;margin-left: 6%;height: 33px !important;">
                                                                 <option> - </option>
-        														                                                                <option value="shekel" selected=""> {{trans('admin.shekel')}} </option>
-        														                                                                <option value="dollar"> {{trans('admin.dollar')}} </option>
-        														                                                                <option value="dinar">{{trans('admin.dinar')}}  </option>
-        														                                                                <option value="euro">{{trans('admin.euro')}}  </option>
-        														                                                            </select>
+                                                                <option value="shekel" selected=""> {{trans('admin.shekel')}} </option>
+                                                                <option value="dollar"> {{trans('admin.dollar')}} </option>
+                                                                <option value="dinar">{{trans('admin.dinar')}}  </option>
+                                                                <option value="euro">{{trans('admin.euro')}}  </option>
+                                                            </select>
                                                         </div>
                                             </div>
                                         </div>

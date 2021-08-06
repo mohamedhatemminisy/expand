@@ -21,6 +21,41 @@
           </ul>
         </li>
 
+
+        <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><span>
+        {{trans('admin.underway')}}</span></a>
+          <ul class="dropdown-menu">
+
+            <li data-menu="">
+              <a class="dropdown-item" href="{{route('projects')}}" data-toggle="dropdown">{{trans('admin.projects')}}</a>
+            </li>
+          </ul>
+        </li>
+
+
+        <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><span>
+        {{trans('admin.offices_orginzatos')}}</span></a>
+          <ul class="dropdown-menu">
+
+            <li data-menu="">
+              <a class="dropdown-item" href="{{route('enginering')}}" data-toggle="dropdown">{{trans('admin.enginering_offices')}}</a>
+            </li>
+            <li data-menu="">
+              <a class="dropdown-item" href="{{route('space')}}" data-toggle="dropdown">{{trans('admin.office_space')}}</a>
+            </li>
+            <li data-menu="">
+              <a class="dropdown-item" href="{{route('banks')}}" data-toggle="dropdown">{{trans('admin.banks')}}</a>
+            </li>            <li data-menu="">
+              <a class="dropdown-item" href="{{route('suppliers')}}" data-toggle="dropdown">{{trans('admin.suppliers')}}</a>
+            </li>
+            </li>           
+           <li data-menu="">
+              <a class="dropdown-item" href="{{route('orginzations')}}" data-toggle="dropdown">{{trans('admin.orginzations')}}</a>
+            </li>
+          </ul>
+        </li>
+
+
         <li class="dropdown nav-item" data-menu="dropdown">
           <a class="dropdown-toggle nav-link" href="{{route('subscribers')}}">
             <span>{{trans('admin.subscribers')}}</span>
