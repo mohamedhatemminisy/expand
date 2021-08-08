@@ -126,4 +126,17 @@ return [
     'orginzations'  => 'مؤسسات',
     'enginering_offices' => 'مكاتب هندسية',
 
+    'orgnization_name' => 'اسم المؤسسة',
+    'ZIP_code'   => 'الرمز البريدي',
+    'org_status' => 'حالة المؤسسة',
+    'org_info' => 'معلومات المؤسسة',
+    'details' => 'تفاصيل الجهة',
+    'attachments' => 'مرفقات',
+    'orgnization_added' => 'تم حفظ بيانات المؤسسة',
+    'enginer_office'  => 'مكتب هندسي',
+    'bank_name' => 'اسم البنك',
+    'supplier_name' => 'اسم المورد',
+    'space_office'  => 'مكتب مساحة',
+
 ];
+ 

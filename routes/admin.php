@@ -54,16 +54,21 @@ Route::group([
         
         Route::get('projects', 'ProjectController@index')->name('projects');
    
-        Route::get('enginering', 'EngineringController@index')->name('enginering');
 
-        
-        Route::get('space', 'SpaceController@index')->name('space');
 
-        Route::get('banks', 'BanksController@index')->name('banks');
-        
-        Route::get('suppliers', 'suppliersController@index')->name('suppliers');
-        
+        Route::get('enginering', 'orginzationsController@enginering')->name('enginering');
+        Route::get('space', 'orginzationsController@space')->name('space');
+        Route::get('banks', 'orginzationsController@banks')->name('banks');
+        Route::get('suppliers', 'orginzationsController@suppliers')->name('suppliers');
         Route::get('orginzations', 'orginzationsController@index')->name('orginzations');
+        Route::post('store_orginzation', 'orginzationsController@store_orginzation')->name('store_orginzation');
+        Route::get('orginzation_auto_complete', 'orginzationsController@orginzation_auto_complete')
+        ->name('orginzation_auto_complete');
+        Route::get('orgnization_info', 'orginzationsController@orgnization_info')->name('orgnization_info');
+
+        
+        
+        
 
         Route::group(['prefix' => 'profile'], function () {
             Route::get('edit', 'ProfileController@editProfile')->name('edit.profile');

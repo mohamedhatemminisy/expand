@@ -127,5 +127,15 @@ return [
     'orginzations'  => 'Orginzations',
     'enginering_offices' =>'Enginering offices',
 
-
+    'orgnization_name' => 'Orgnization name',
+    'ZIP_code'   => 'ZIP code',
+    'org_status' => 'Orgnization status',
+    'org_info' => 'Orgnization information',
+    'details' => 'Entity details',
+    'attachments' => 'Attachments',
+    'orgnization_added' => 'orgnization added',
+    'enginer_office'  => 'Enginer office',
+    'bank_name' => 'Bank name',
+    'supplier_name' => 'Supplier name',
+    'space_office'  => 'Space office',
 ];
