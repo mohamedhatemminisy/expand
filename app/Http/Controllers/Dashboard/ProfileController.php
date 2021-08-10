@@ -15,8 +15,8 @@ class ProfileController extends Controller
     {
 
         $admin = Admin::find(auth('admin')->user()->id);
-
-        return view('dashboard.profile.edit', compact('admin'));
+        $users = User::get();
+        return view('dashboard.profile.edit', compact('admin','users'));
 
     }
 

@@ -48,14 +48,18 @@ Route::group([
         
         Route::get('subscribers', 'SubscriberController@index')->name('subscribers');
         Route::post('store_subscriber', 'SubscriberController@store_subscriber')->name('store_subscriber');
-        Route::post('depart_manger', 'SubscriberController@depart_manger')->name('depart_manger');
         Route::get('subscribe_auto_complete', 'SubscriberController@subscribe_auto_complete')->name('subscribe_auto_complete');
         Route::get('subscribe_info', 'SubscriberController@subscribe_info')->name('subscribe_info');
         
         Route::get('projects', 'ProjectController@index')->name('projects');
-   
+        Route::post('store_project', 'ProjectController@store_project')->name('store_project');
+        Route::post('depart_manger_project', 'ProjectController@depart_manger_project')->name('depart_manger_project');
+        Route::get('project_auto_complete', 'ProjectController@project_auto_complete')->name('project_auto_complete');
+        Route::get('project_info', 'ProjectController@project_info')->name('project_info');
 
+        
 
+        
         Route::get('enginering', 'orginzationsController@enginering')->name('enginering');
         Route::get('space', 'orginzationsController@space')->name('space');
         Route::get('banks', 'orginzationsController@banks')->name('banks');
@@ -67,6 +71,7 @@ Route::group([
         Route::get('orgnization_info', 'orginzationsController@orgnization_info')->name('orgnization_info');
 
         
+
         
         
 

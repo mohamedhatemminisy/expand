@@ -2,6 +2,8 @@
 @section('content')
 
 <section class="horizontal-grid" id="horizontal-grid">
+<form id="ajaxform">
+
 <div class="row white-row">
     <div class="col-sm-12 col-lg-6 col-md-12">
         <div class="card leftSide">
@@ -37,8 +39,10 @@
                                     </span>
                                         </div>
                                         <input type="text" id="ProjectName" class="form-control ac ui-autocomplete-input" placeholder="{{trans('admin.project_name')}}" name="ProjectName" autocomplete="off">
-                                        <input type="hidden" id="pk_i_id" name="pk_i_id" value="0">
                                     </div>
+                                    <div id="auto-complete-barcode" class="divKayUP barcode-suggestion "></div>
+                                    <input type="hidden" id="project_id" name="project_id" value="">
+
                                 </div>
                             </div>
                             <div class="col-lg-5 col-md-12">
@@ -65,7 +69,7 @@
             {{trans('admin.project_start_date')}}
             </span>
                                         </div>
-                                        <input type="text" id="dateStart" name="dateStart" data-mask="00/00/0000" maxlength="10" class="form-control eng-sm singledate valid " placeholder="dd/mm/yyyy" aria-describedby="basic-addon1" autocomplete="off">
+                                        <input type="date" id="dateStart" name="dateStart" data-mask="00/00/0000" maxlength="10" class="form-control eng-sm singledate valid " placeholder="dd/mm/yyyy" aria-describedby="basic-addon1" autocomplete="off">
 
                                     </div>
                                 </div>
@@ -78,7 +82,7 @@
             {{trans('admin.project_end_date')}}
             </span>
                                         </div>
-                                        <input type="text" id="dateEnd" name="dateEnd" class="form-control eng-sm singledate valid" data-mask="00/00/0000" autocomplete="off" maxlength="10" placeholder="dd/mm/yyyy" aria-describedby="basic-addon1">
+                                        <input type="date" id="dateEnd" name="dateEnd" class="form-control eng-sm singledate valid" data-mask="00/00/0000" autocomplete="off" maxlength="10" placeholder="dd/mm/yyyy" aria-describedby="basic-addon1">
 
                                     </div>
                                 </div>
@@ -96,8 +100,11 @@
                                             </span>
                                         </div>
                                         <select type="text" id="pinc6" name="pich6" class="form-control valid" onchange="getEmpInfo($(this).val(),$('#Department'),$('#pos'),0);hideSelected($(this).val())" aria-invalid="false">
-                                            <option> - </option>
-                                            <option value="63"> employee  </option>
+                                        <optgroup label=" ">
+                                            @foreach($admins as $admin)
+                                            <option value="{{$admin->id}}"> {{$admin->name}}  </option>
+                                            @endforeach
+                                        </optgroup>
                                         </select>
                                     </div>
                                 </div>
@@ -111,8 +118,10 @@
                                     </div>
 
                                     <select type="text" disabled="" id="Department" name="Department" class="form-control">
-                                        <option> - </option>
-                                       <option value="25"> مراكزخدمات الجمهور </option>
+                                  
+                                    @foreach($departments as $department)
+                                       <option value="{{ $department->id }}">{{ $department->name}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -120,7 +129,7 @@
 
                             <div class="row">
                             <div class="col-lg-12 col-md-12 pr-s-12">
-                                <div class="form-group">
+                                <div class="form-group user_subscriber">
                                     <div class="input-group w-s-87 mt-s-6" style="width: 100% !important;">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">
@@ -128,7 +137,9 @@
                                             </span>
                                         </div>
                                         <select type="text" id="subscribers" name="subscribers[]" multiple class="form-control valid" onchange="getEmpInfo($(this).val(),$('#Department'),$('#pos'),0);hideSelected($(this).val())" aria-invalid="false">
-                                            <option value="63"> subscribers  </option>
+                                         @foreach($users as $user)   
+                                        <option value="{{$user->id}}"> {{$user->name}}  </option>
+                                        @endforeach
 
                                         </select>
                                     </div>
@@ -171,15 +182,10 @@
                                 <th scope="col"># </th>                                    
                                     <th scope="col">{{trans('admin.subscriber_name')}} </th>
                                     <th scope="col">{{trans('admin.business_name')}}</th>
-                                    <th scope="col">{{trans('admin.job_title')}}</th>
+                                    <th scope="col">{{trans('admin.emp_id')}}</th>
 
                                 </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>mohamed</td>
-                                    <td>hatem </td>
-                                    <td>مهندس</td>
-                                </tr>
+
 
                                 </tbody><tbody id="userList">
 
@@ -248,9 +254,6 @@
                     </div>
                 </div>
             </div>
-
-
-
                     </div>
                 </div>
             </div>
@@ -355,10 +358,13 @@
                                                     {{trans('admin.select_financier')}}
                                                 </span>
                                             </div>
-                                            <select type="text" id="sponsor" name="sponsor[]" class="form-control">
-                                                <option> - </option>
-                                                <option value="33"> مؤسسة المانحون العرب  </option>
-                                        </select>
+                                            <select type="text" id="sponsor" name="sponsor" class="form-control">
+                                            <optgroup label=" ">
+                                                @foreach($sponsers as $sponser)
+                                                <option value="{{$sponser->id}}">  {{$sponser->name}}  </option>
+                                               @endforeach
+                                            </optgroup>
+                                            </select>
                                         </div>
                                     </td>
                                     <td>
@@ -368,7 +374,7 @@
                                                 {{trans('admin.financie_percentage')}}
                                                 </span>
                                             </div>
-                                            <input type="text" id="cost1" name="cost[]" class="form-control " aria-describedby="basic-addon1" style="    padding-left: 10px !important;padding-right: 0 !important;">
+                                            <input type="text" id="cost1" name="cost1" class="form-control " aria-describedby="basic-addon1" style="    padding-left: 10px !important;padding-right: 0 !important;">
                                         </div>
                                     </td>
                                     <td>
@@ -396,10 +402,13 @@
                                             
                                             </span>
                                         </div>
-                                        <select type="text" id="Contractor" name="Contractor[]" class="form-control" onchange="getSupplierInfo($(this).val(),$('#pinc8'))" style="padding-right: 0 !important;padding-left: 0rem !important;">
-                                            <option> - </option>
-                                            <option value="20"> شركة bci </option>
-                                        </select>
+                                        <select type="text" id="Contractor" name="Contractor" class="form-control" onchange="getSupplierInfo($(this).val(),$('#pinc8'))" style="padding-right: 0 !important;padding-left: 0rem !important;">
+                                        <optgroup label=" ">
+                                            @foreach($Contractor as $Contract)
+                                                <option value="{{$Contract->id}}">  {{$Contract->name}}  </option>
+                                            @endforeach    
+                                        </optgroup>                                  
+                                      </select>
                                     </div>
                                 </td>
                                 <td>
@@ -558,14 +567,11 @@
                 </div>
             </div>
             <div class="form-actions" style="border-top:0px;">
-                        <div class="text-right">
-                            <button type="submit" class="btn btn-primary" id="saveBtn">ارسال <i class="ft-thumbs-up position-right"></i></button>
-                            <button type="button" class="btn btn-primary" id="updateBtn" style="display: none" onclick="UpdateForm()">تعديل <i class="ft-thumbs-up position-right"></i></button>
-                            <a href="https://db.expand.ps/addProject" type="reset" class="btn btn-warning">اعادة تعيين
-                                <i class="ft-refresh-cw position-right"></i>
-                            </a>
-                        </div>
-                    </div>
+                <div class="text-right">
+                    <button class="btn btn-primary save-data">{{trans('admin.save')}} <i class="ft-thumbs-up position-right"></i></button>
+                    <button type="reset" class="btn btn-warning"> {{trans('admin.reset')}} <i class="ft-refresh-cw position-right"></i></button>
+                </div>
+          </div>
 
         </div>
 
@@ -573,6 +579,7 @@
 
 </div>
 
+</form>
 </section>
 
 
@@ -580,6 +587,254 @@
 @stop
 @section('script')
 
+<script>
+ $(".ui-autocomplete-input").keyup(function () {
+        if ($(this).val().length >= 1) {
+            // auto complete with Ajax Function :-
+            var url = 'project_auto_complete';
+            let type = $("input[name=type]").val();
+
+            $.ajax({
+                type: 'GET',
+                url: url,
+                data: {
+                    project: $(this).val(),
+                    type : type
+                },
+                success: function (barcodes) {
+                    $('.divKayUP').html(barcodes);
+                    $(".divKayUP").css("display", "block");
+                }
+            });
+        } else {
+            $(".ui-autocomplete").css("display", "none");
+        }
+    });
+
+    $(document).on('click', '.select_name', function () {
+        $("#userList").empty();
+
+            $('.user_subscriber').css('display','none');
+            $("#barcode").val('');
+            $(".divKayUP").css("display", "none");
+            // get product details :-
+            let project_id = $(this).data("id");
+            $.ajax({
+            type: 'get', // the method (could be GET btw)
+            url: "project_info",
+            data: {
+                project_id: project_id,
+            },
+            success:function(response){
+            $('#project_id').val(response.info.id); 
+            $('#ProjectNo').val(response.info.ProjectNo);
+            $('#ProjectName').val(response.info.name);
+            $('#dateStart').val(response.info.dateStart);
+            $('#dateEnd').val(response.info.dateEnd);
+            $('#Projectcost').val(response.info.Projectcost);
+            $("select#CurrencyID option")
+                 .each(function() { this.selected = (this.text == response.Currency); 
+            });
+            
+            $("select#pich6 option")
+                 .each(function() { this.selected = (this.text == response.admin); 
+            });
+            $("select#Department option")
+                 .each(function() { this.selected = (this.text == response.department); 
+            });
+
+            $("select#sponsor option")
+                 .each(function() { this.selected = (this.text == response.sponsers); 
+            });
+            $('#cost1').val(response.info.cost1);
+            $('#pinc8').val(response.info.pinc8);
+
+            $("select#Contractor option")
+                 .each(function() { this.selected = (this.text == response.contract); 
+            });
+            $('#AddressDetails').val(response.address.details);
+            $('#Note').val(response.address.notes);
+            $("select#CityID option")
+                 .each(function() { this.selected = (this.text == response.city); 
+            });
+            $("select#area_data option")
+                 .each(function() { this.selected = (this.text == response.area); 
+            });
+            $("select#region_data option")
+                 .each(function() { this.selected = (this.text == response.region); 
+            });
+
+            var len = response.users.length;
+        for(var i=0; i<len; i++){
+			    var index = i+1;
+
+                var name = response.users[i].name;
+                var bussniess_name = response.users[i].bussniess_name;
+                var national_id = response.users[i].national_id;
+
+                    var userList = '<tr><td>'+index +'</td><td>'
+                    +name+'</td><td>'+bussniess_name+'</td><td>'+national_id+'</td><td></tr>'
+                    $("#userList").append(userList);
+            }
 
 
+
+			},
+			});
+        });
+
+
+$("#pinc6").change(function () {
+        var val = $(this).val();
+$.ajax({
+   type: 'post', // the method (could be GET btw)
+   url: "depart_manger_project",
+   data: {
+        val: val,
+        _token: '{{csrf_token()}}',
+   },
+   success:function(response){
+    $("select#Department option")
+                 .each(function() { this.selected = (this.text == response); 
+            });
+         },
+        });
+    });
+
+
+///////////
+$("#CityID").change(function () {
+        $("#area_data").empty();
+        var val = $(this).val();
+
+$.ajax({
+   type: 'post', // the method (could be GET btw)
+   url: "state",
+   data: {
+        val: val,
+        _token: '{{csrf_token()}}',
+   },
+   success:function(response){
+        var len = response.length;
+        for(var i=0; i<len; i++){
+                var name = response[i].name;
+                var id = response[i].id;
+                    var state_details = '<option value="'+id +'">'
+                    +name+' </option>'
+                    $("#area_data").append(state_details);
+            }
+         },
+        });
+    });
+
+    $("#area_data").change(function () {
+        $("#region_data").empty();
+        var val = $(this).val();
+
+$.ajax({
+   type: 'post', // the method (could be GET btw)
+   url: "area",
+   data: {
+        val: val,
+        _token: '{{csrf_token()}}',
+   },
+   success:function(response){
+        var len = response.length;
+        for(var i=0; i<len; i++){
+                var name = response[i].name;
+                var id = response[i].id;
+                    var region_details = '<option value="'+id +'">'
+                    +name+' </option>'
+                    $("#region_data").append(region_details);
+            }
+         },
+        });
+    });
+
+
+
+    $(".save-data").click(function(event){
+     $( "#ProjectName" ).removeClass( "error" );
+     $( "#dateStart" ).removeClass( "error" );
+     $( "#dateEnd" ).removeClass( "error" );
+
+      event.preventDefault();
+
+      let ProjectName = $("input[name=ProjectName]").val();
+      let ProjectNo = $("input[name=ProjectNo]").val();
+      let dateStart = $("input[name=dateStart]").val();
+      let dateEnd = $("input[name=dateEnd]").val();
+      var pinc6 = $('#pinc6').find(":selected").val();
+      var Department = $('#Department').find(":selected").val();
+      var subscribers = $("#subscribers :selected").map(function(i, el) {
+    return $(el).val();
+}).get();
+      let Projectcost = $("input[name=Projectcost]").val();
+      var CurrencyID = $('#CurrencyID').find(":selected").val();
+      var _token ='{{csrf_token()}}';
+      let project_id = $("input[name=project_id]").val();
+      var CityID = $('#CityID').find(":selected").val();
+      var area_data = $('#area_data').find(":selected").val();
+      var region_data = $('#region_data').find(":selected").val();
+      var AddressDetails = $('#AddressDetails').val();
+      var Note = $('#Note').val();
+      var sponsor = $('#sponsor').find(":selected").val();
+      let cost1 = $("input[name=cost1]").val();
+      var Contractor = $('#Contractor').find(":selected").val();
+      let pinc8 = $("input[name=pinc8]").val();
+
+      $.ajax({
+        url: "store_project",
+        type:"POST",
+        data:{
+            ProjectName:ProjectName,
+            ProjectNo:ProjectNo,
+			dateStart:dateStart,
+            dateEnd:dateEnd,
+            pinc6:pinc6,
+            Department:Department,
+            subscribers:subscribers, 
+            Projectcost:Projectcost,                              
+            CurrencyID:CurrencyID,                                            
+            _token: _token ,   
+            project_id:project_id, 
+            CityID:CityID, 
+            area_data:area_data,            
+            region_data:region_data,            
+            AddressDetails:AddressDetails,            
+            Note:Note,      
+            sponsor:sponsor, 
+            cost1:cost1,            
+            Contractor:Contractor,            
+            pinc8:pinc8,            
+           
+         },
+
+        success:function(response){
+            $('.success_alert').css('visibility', 'visible');
+
+            setTimeout(function() {
+            $('.success_alert').fadeOut();
+            }, 3000 ); 
+            
+            $("#ajaxform")[0].reset();          
+        },
+        error: function(response) {
+            if(response.responseJSON.errors.ProjectName){
+                $( "#ProjectName" ).addClass( "error" );
+            }
+            if(response.responseJSON.errors.dateStart){
+                $( "#dateStart" ).addClass( "error" );
+            }
+            if(response.responseJSON.errors.dateEnd){
+                $( "#dateEnd" ).addClass( "error" );
+            }
+           }
+
+
+
+       });
+  });
+
+</script>
 @endsection

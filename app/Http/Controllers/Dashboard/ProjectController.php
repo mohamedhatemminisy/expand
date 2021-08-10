@@ -8,19 +8,32 @@ use App\Models\City;
 use App\Models\Address;
 use App\Models\Admin;
 use App\Models\Area;
+use App\Models\User;
+use App\Models\Department;
 use App\Models\Region;
-use App\Http\Requests\DepartmentRequest;
-use App\Http\Requests\SubscribertRequest;
+use App\Models\Project;
+use App\Models\Orgnization;
+use App\Http\Requests\ProjectRequest;
 
 class ProjectController extends Controller
 {
     public function index(){
         $city = City::get();
         $admins = Admin::get();
-        return view('dashboard.project.index',compact('city','admins'));    
+        $users = User::get();
+        $departments = Department::get();
+        $sponsers = Orgnization::where('org_type','orginzation')->get();
+        $Contractor = Orgnization::where('org_type','suppliers')->get();
+        return view('dashboard.project.index',compact('city','admins','users','Contractor',
+        'departments','sponsers'));    
     }
 
-    public function store_subscriber (SubscribertRequest $request){
+    public function depart_manger_project(Request $request){
+        $department = Department::where('admin_id',$request['val'])->first()->name;
+        return response()->json($department);
+    }
+
+    public function store_project (ProjectRequest $request){
         $address = new Address();
         $address->area_id = $request->area_data;
         $address->city_id = $request->CityID;
@@ -28,73 +41,79 @@ class ProjectController extends Controller
         $address->details = $request->AddressDetails;
         $address->notes = $request->Note;
         $address->save();
-        if($request->subscriber_id == null){
-            $user = new User();
-            $user->name = $request->formDataNameAR;
-            $user->phone_one = $request->formDataMobileNo1;
-            $user->phone_two = $request->formDataMobileNo2;
-            $user->national_id = $request->formDataNationalID;
-            $user->cutomer_num = $request->formDataCutomerNo;
-            $user->bussniess_name = $request->formDataBussniessName;
-            $user->email  = $request->formDataEmailAddress;
-            $user->username = $request->username;
-            $user->password = $request->password ? bcrypt($request->password) : null;
-            $user->group_id  = $request->formDataIndustryID;
-            $user->job_title_id  = $request->formDataProfessionID;
-            $user->addresse_id   = $address->id;
-            $user->save();
+        if($request->project_id == null){
+            $project = new Project();
+            $project->name = $request->ProjectName;
+            $project->ProjectNo = $request->ProjectNo;
+            $project->dateStart = $request->dateStart;
+            $project->dateEnd = $request->dateEnd;
+            $project->admin_id = $request->pinc6;
+            $project->department_id  = $request->Department;
+            $project->user_id    = json_encode($request->subscribers);
+            $project->Projectcost   = $request->Projectcost;
+            $project->currency = $request->CurrencyID;
+            $project->sponser   = $request->sponsor;
+            $project->addresse_id   = $address->id;
+            $project->contract    = $request->Contractor;
+            $project->pinc8   = $request->pinc8;
+            $project->cost1   = $request->cost1;
+            $project->save();
          }else{
-            $user = User::find($request->subscriber_id);
-            $user->name = $request->formDataNameAR;
-            $user->phone_one = $request->formDataMobileNo1;
-            $user->phone_two = $request->formDataMobileNo2;
-            $user->national_id = $request->formDataNationalID;
-            $user->cutomer_num = $request->formDataCutomerNo;
-            $user->bussniess_name = $request->formDataBussniessName;
-            $user->email  = $request->formDataEmailAddress;
-            $user->username = $request->username;
-            if($request->password){
-                $user->password = bcrypt($request->password);
-            }else{
-                $user->password = $user->password;
-            }
-            $user->group_id  = $request->formDataIndustryID;
-            $user->job_title_id  = $request->formDataProfessionID;
-            $user->addresse_id   = $address->id;
-            $user->save();
+            $project = Project::find($request->project_id);
+            $project->name = $request->ProjectName;
+            $project->ProjectNo = $request->ProjectNo;
+            $project->dateStart = $request->dateStart;
+            $project->dateEnd = $request->dateEnd;
+            $project->admin_id = $request->pinc6;
+            $project->department_id  = $request->Department;
+            $project->Projectcost   = $request->Projectcost;
+            $project->currency = $request->CurrencyID;
+            $project->sponser   = $request->sponsor;
+            $project->addresse_id   = $address->id;
+            $project->contract    = $request->Contractor;
+            $project->pinc8   = $request->pinc8;
+            $project->cost1   = $request->cost1;
+            $project->save();
          }
-         if ($user) {
+         if ($project) {
 
-            return response()->json(['success'=>trans('admin.subscriber_added')]);
+            return response()->json(['success'=>trans('admin.project_added')]);
         }
      
         return response()->json(['error'=>$validator->errors()->all()]);
     }
 
-    public function subscribe_auto_complete(Request $request){
-        $subscriber_data = $request->get('subscriber');
-        $names = User::where('name', 'like', '%' . $subscriber_data . '%')->get();
+    public function project_auto_complete(Request $request){
+        $project_data = $request->get('project');
+        $names = Project::where('name', 'like', '%' . $project_data . '%')->get();
         $html = view('dashboard.component.auto_complete', compact('names'))->render();
         return response()->json($html);
     }
 
-    public function subscribe_info(Request $request)
+    public function project_info(Request $request)
     {
-        $user['info'] = User::find($request['subscribe_id']);
-        $user['job_title'] = JobTitle::where('id',$user['info']->job_title_id)->first()->name;
-        $user['group'] = Group::where('id',$user['info']->group_id)->first()->name;
-        $user['address'] = Address::where('id', $user['info']['addresse_id'])->first();
+        $project['info'] = Project::find($request['project_id']);
+        $project['admin'] = Admin::where('id',$project['info']->admin_id)->first()->name;
+        $project['department'] = Department::where('id',$project['info']->department_id)->first()->name;
+        $project['address'] = Address::where('id', $project['info']['addresse_id'])->first();
+        $project['sponsers'] = Orgnization::where('org_type','orginzation')->where('id', $project['info']->sponser)->first()->name;
+        $project['contract'] = Orgnization::where('org_type','suppliers')->where('id', $project['info']->contract)->first()->name;
+        $users = json_decode($project['info']->user_id);
+        $project['users'] = User::whereIn('id', $users)->get();
 
-        if($user['address']->city_id){
-            $user['city'] =City::where('id',$user['address']->city_id)->first()->name;
+        if($project['address']->city_id){
+            $project['city'] =City::where('id',$project['address']->city_id)->first()->name;
         }
-        if($user['address']->area_id){
-            $user['area'] =Area::where('id',$user['address']->area_id)->first()->name;
+        if($project['address']->area_id){
+            $project['area'] =Area::where('id',$project['address']->area_id)->first()->name;
         }
-        if($user['address']->region_id){
-            $user['region'] =Region::where('id',$user['address']->region_id)->first()->name;
+        if($project['address']->region_id){
+            $project['region'] =Region::where('id',$project['address']->region_id)->first()->name;
         }
-        return response()->json($user);
+        $project['Currency'] = trans('admin.'.$project['info']->currency);
+
+
+        return response()->json($project);
 
     }
     

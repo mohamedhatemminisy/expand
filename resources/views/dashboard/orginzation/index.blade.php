@@ -464,30 +464,20 @@
             $('#phone1').val(response.info.whatsapp_one);
             $('#phone2').val(response.info.whatsapp_two);
             $('#website').val(response.info.website);
-
-            
-            
             $("select#PositionID option")
                  .each(function() { this.selected = (this.text == response.job_title); 
             });
-
             $('#AddressDetails').val(response.address.details);
             $('#Note').val(response.address.notes);
             $("select#CityID option")
                  .each(function() { this.selected = (this.text == response.city); 
             });
-            
             $("select#area_data option")
                  .each(function() { this.selected = (this.text == response.area); 
             });
-                        console.log( response.region);
-
             $("select#region_data option")
                  .each(function() { this.selected = (this.text == response.region); 
             });
-
-
-
 			},
 			});
         });

@@ -33,6 +33,7 @@ class CreateProjectsTable extends Migration
             $table->foreign('sponser')->references('id')->on('orgnizations')->onDelete('cascade');
             $table->integer('contract')->unsigned();
             $table->foreign('contract')->references('id')->on('orgnizations')->onDelete('cascade');
+            $table->string('user_id')->nullable();
             $table->timestamps();
         });
     }
