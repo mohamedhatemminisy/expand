@@ -73,18 +73,16 @@ Route::group([
 
         Route::get('dev_equp', 'AssetsController@dev_equp')->name('dev_equp');
         Route::get('vehicles', 'AssetsController@vehicles')->name('vehicles');
-        Route::get('buildings', 'AssetsController@buildings')->name('buildings');
-        Route::get('Gardens_lands', 'AssetsController@Gardens_lands')->name('Gardens_lands');
-        Route::get('warehouses', 'AssetsController@warehouses')->name('warehouses');
-        
-        Route::post('store_orginzation', 'AssetsController@store_orginzation')->name('store_orginzation');
-        Route::get('orginzation_auto_complete', 'AssetsController@orginzation_auto_complete')
-        ->name('orginzation_auto_complete');
-        Route::get('orgnization_info', 'AssetsController@orgnization_info')->name('orgnization_info');
+        Route::post('store_equpment', 'AssetsController@store_equpment')->name('store_equpment');
+        Route::get('equip_auto_complete', 'AssetsController@equip_auto_complete')
+        ->name('equip_auto_complete');
+        Route::get('equip_info', 'AssetsController@equip_info')->name('equip_info');
 
         
   
-
+        Route::get('buildings', 'SpecialAssetsController@buildings')->name('buildings');
+        Route::get('Gardens_lands', 'SpecialAssetsController@Gardens_lands')->name('Gardens_lands');
+        Route::get('warehouses', 'SpecialAssetsController@warehouses')->name('warehouses');
         
         
 
