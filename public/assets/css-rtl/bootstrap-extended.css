@@ -743,9 +743,7 @@ select.form-control {
   left : 12px;
 }
 
-.navbar-horizontal .dropdown-toggle::after {
-  top : 14px !important;
-}
+
 
 .dropdown-menu-right {
   left : 0;
@@ -983,8 +981,16 @@ select.form-control {
   -webkit-box-shadow : 0 2px 30px 2px rgba(0, 0, 0, 0.1);
           box-shadow : 0 2px 30px 2px rgba(0, 0, 0, 0.1);
 }
-.header-navbar.navbar-without-dd-arrow .nav-link.dropdown-toggle::after {
+.header-navbar.navbar-without-dd-arrow .dropdown-user-link.nav-link.dropdown-toggle::after {
   display : none;
+}
+.dropdown-toggle::after {
+  display: inline-block;
+  margin-right: .255em;
+  border-top: .3em solid;
+  border-left: .3em solid transparent;
+  border-bottom: 0;
+  border-right: .3em solid transparent;
 }
 .header-navbar.navbar-brand-center .navbar-header {
   width : 192px;

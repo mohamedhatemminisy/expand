@@ -135,7 +135,7 @@
                                     </select>
                                         <div class="input-group-append" onclick="QuickAdd(17,'PositionID','Position')">
                                         <span class="input-group-text input-group-text2">
-                                            <i class="fa fa-external-link-alt"></i>
+                                            <i class="fa fa-external-link"></i>
                                         </span>
                                         </div>
                                     </div>
@@ -292,38 +292,52 @@
                         <div class="card-body">
                         <div class="row">
                         <div class="col-md-4">
-                            <div class="form-group">
+                            <div class="row">
+                                <div class="form-group col-10">
 
-                                <select id="CityID" name="CityID" type="text" class="form-control selectFullCorner" onchange="doGetChild($(this).val(),8,'TownID')">
-                                    <option disabled> -- {{trans('admin.city')}} --</option>     
-                                    @foreach($city as $cit)
-                                        <option  value="{{$cit->id}}">  {{$cit->name}} </option>
-                                    @endforeach
-                            </select>
+                                    <select id="CityID" name="CityID" type="text" class="form-control selectFullCorner" onchange="doGetChild($(this).val(),8,'TownID')">
+                                        <option disabled> -- {{trans('admin.city')}} --</option>     
+                                        @foreach($city as $cit)
+                                            <option  value="{{$cit->id}}">  {{$cit->name}} </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="input-group-append col-2" onclick="QuickAdd(17,'PositionID','Position')" style="max-width:15px; margin-left:0px !important;padding-left:0px !important;padding-right:0px !important;padding-bottom: 18px;">
+                                    <span class="input-group-text input-group-text2">
+                                        <i class="fa fa-external-link"></i>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="form-group">
-                                <select id="area_data" name="TownID" type="text" class="form-control selectFullCorner" onchange="doGetChild($(this).val(),9,'AreaID')">
-                                    <option disabled>   {{trans('admin.area')}} </option>
-                                </select>
+                            <div class="row">
+                                <div class="form-group col-10">
+                                    <select id="area_data" name="TownID" type="text" class="form-control selectFullCorner" onchange="doGetChild($(this).val(),9,'AreaID')">
+                                        <option disabled>   {{trans('admin.area')}} </option>
+                                    </select>
+                                </div>
+                                <div class="input-group-append col-2" onclick="QuickAdd(17,'PositionID','Position')" style="max-width:15px; margin-left:0px !important;padding-left:0px !important;padding-right:0px !important;padding-bottom: 18px;">
+                                    <span class="input-group-text input-group-text2">
+                                        <i class="fa fa-external-link"></i>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="form-group">
-
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
+                            <div class="row">  
+                                <div class="form-group col-10">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                        </div>
+                                        <select id="region_data" name="AreaID" type="text" class="form-control selectFullCorner" onchange="doGetChild($(this).val(),10,'NeighborID')">
+                                            <option value="0" disabled>   {{trans('admin.region')}}  </option>                                                                         
+                                            </select>
                                     </div>
-                                    <select id="region_data" name="AreaID" type="text" class="form-control selectFullCorner" onchange="doGetChild($(this).val(),10,'NeighborID')">
-                                        <option value="0" disabled>   {{trans('admin.region')}}  </option>                                                                         
-                                        </select>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text input-group-text2">
-                                        <i class="fa fa-external-link-alt" style="color:#ffffff"></i>
-                                        </span>
-                                    </div>
-
+                                </div>
+                                <div class="input-group-append col-2" onclick="QuickAdd(17,'PositionID','Position')" style="max-width:15px; margin-left:0px !important;padding-left:0px !important;padding-right:0px !important;padding-bottom: 18px;">
+                                    <span class="input-group-text input-group-text2">
+                                        <i class="fa fa-external-link"></i>
+                                    </span>
                                 </div>
                             </div>
                         </div>

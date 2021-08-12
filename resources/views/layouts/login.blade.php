@@ -35,26 +35,16 @@
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/style-rtl.css')}}">
     <!-- END Custom CSS-->
-    @notify_css
-    <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">s
+    <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Cairo', sans-serif;
         }
     </style>
 </head>
-<body class="vertical-layout vertical-menu 1-column   menu-expanded blank-page blank-page"
-      data-open="click" data-menu="vertical-menu" data-col="1-column">
-<!-- ////////////////////////////////////////////////////////////////////////////-->
-<div class="app-content content">
-    <div class="content-wrapper">
-        <div class="content-header row">
-        </div>
-        <div class="content-body">
+
             @yield('content')
-        </div>
-    </div>
-</div>
+ 
 <!-- ////////////////////////////////////////////////////////////////////////////-->
 <!-- BEGIN VENDOR JS-->
 <script src="{{asset('assets/admin/vendors/js/vendors.min.js')}}" type="text/javascript"></script>
@@ -75,7 +65,6 @@
 <script>
 
 </script>
-@notify_js
-@notify_render
-</body>
+
+<!--</body>-->
 </html>
