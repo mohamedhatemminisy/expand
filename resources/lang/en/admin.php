@@ -138,4 +138,11 @@ return [
     'bank_name' => 'Bank name',
     'supplier_name' => 'Supplier name',
     'space_office'  => 'Space office',
+
+    'assets'   =>  'Assets',
+    'dev_equp'   =>  'Equipment',
+    'vehicles'   =>  'Vehicles',
+    'buildings'   =>  'Buildings',
+    'Gardens_lands'   =>  'Gardens and lands',
+    'warehouses'   =>  'Warehouses',
 ];

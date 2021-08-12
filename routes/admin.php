@@ -70,7 +70,20 @@ Route::group([
         ->name('orginzation_auto_complete');
         Route::get('orgnization_info', 'orginzationsController@orgnization_info')->name('orgnization_info');
 
+
+        Route::get('dev_equp', 'AssetsController@dev_equp')->name('dev_equp');
+        Route::get('vehicles', 'AssetsController@vehicles')->name('vehicles');
+        Route::get('buildings', 'AssetsController@buildings')->name('buildings');
+        Route::get('Gardens_lands', 'AssetsController@Gardens_lands')->name('Gardens_lands');
+        Route::get('warehouses', 'AssetsController@warehouses')->name('warehouses');
         
+        Route::post('store_orginzation', 'AssetsController@store_orginzation')->name('store_orginzation');
+        Route::get('orginzation_auto_complete', 'AssetsController@orginzation_auto_complete')
+        ->name('orginzation_auto_complete');
+        Route::get('orgnization_info', 'AssetsController@orgnization_info')->name('orgnization_info');
+
+        
+  
 
         
         

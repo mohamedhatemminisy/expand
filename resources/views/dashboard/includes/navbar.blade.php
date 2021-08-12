@@ -56,6 +56,30 @@
         </li>
 
 
+
+        <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><span>
+        {{trans('admin.assets')}}</span></a>
+          <ul class="dropdown-menu">
+
+            <li data-menu="">
+              <a class="dropdown-item" href="{{route('dev_equp')}}" data-toggle="dropdown">{{trans('admin.dev_equp')}}</a>
+            </li>
+            <li data-menu="">
+              <a class="dropdown-item" href="{{route('vehicles')}}" data-toggle="dropdown">{{trans('admin.vehicles')}}</a>
+            </li>
+            <li data-menu="">
+              <a class="dropdown-item" href="{{route('buildings')}}" data-toggle="dropdown">{{trans('admin.buildings')}}</a>
+            </li>            <li data-menu="">
+              <a class="dropdown-item" href="{{route('Gardens_lands')}}" data-toggle="dropdown">{{trans('admin.Gardens_lands')}}</a>
+            </li>
+            </li>           
+           <li data-menu="">
+              <a class="dropdown-item" href="{{route('warehouses')}}" data-toggle="dropdown">{{trans('admin.warehouses')}}</a>
+            </li>
+          </ul>
+        </li>
+
+
         <li class="dropdown nav-item" data-menu="dropdown">
           <a class="dropdown-toggle nav-link" href="{{route('subscribers')}}">
             <span>{{trans('admin.subscribers')}}</span>
