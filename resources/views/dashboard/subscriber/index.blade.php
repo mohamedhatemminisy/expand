@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 @section('content')
-
 <section class="horizontal-grid" id="horizontal-grid">
     <form id="ajaxform">
     <div class="row white-row">
@@ -23,7 +22,7 @@
                     <div class="card-body" style="padding-bottom: 0px;">
                         <div class="form-body">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-7">
                                 <div class="form-group">
                                     <div class="input-group" style="width: 98% !important;">
                                         <div class="input-group-prepend">
@@ -55,9 +54,10 @@
                                                 </span>
                                             </div>
                                             <input type="text" id="formDataNationalID" maxlength="9" class="form-control numFeild" placeholder="{{trans('admin.emp_id')}}" name="formDataNationalID">
-                                            <div class="input-group-append hidden-sm hidden-xs"><!--" onblur="checkExistCitizen(this); -->
-                                                <span class="input-group-text input-group-text2" style="color:#ffffff">
-                                                    <i class="fa fa-external-link-alt"></i>
+                                            <div class="input-group-append" style="visibility: hidden;" onclick="QuickAdd(9,'formDataProfessionID','Profession')">
+                                                <span class="input-group-text input-group-text2">
+                                                    <i class="fa fa-external-link"></i>
+    
                                                 </span>
                                             </div>
                                         </div>
@@ -102,9 +102,10 @@
                                                 </span>
                                             </div>
                                             <input type="text" id="formDataCutomerNo" name="formDataCutomerNo" class="form-control" placeholder="{{trans('admin.subscriber_num')}}" aria-describedby="basic-addon1">
-                                            <div class="input-group-append hidden-sm hidden-xs">
-                                                <span class="input-group-text input-group-text2" style="color:#ffffff">
-                                                    <i class="fa fa-external-link-alt"></i>
+                                            <div class="input-group-append" style="visibility: hidden;" onclick="QuickAdd(9,'formDataProfessionID','Profession')">
+                                                <span class="input-group-text input-group-text2">
+                                                    <i class="fa fa-external-link"></i>
+    
                                                 </span>
                                             </div>
                                         </div>
@@ -132,15 +133,16 @@
                                                                         </span>
                                         </div>
                                         <select type="text" id="formDataProfessionID" name="formDataProfessionID" class="form-control">
-                                            <option>  </option>
+                                            <option value="0"> - </option>
                                             @foreach($jobTitle as $job)
                                             <option value="{{$job->id}}"> {{$job->name}} </option>
                                             @endforeach
-                                    </select>
+                                        </select>
                                         <div class="input-group-append" onclick="QuickAdd(9,'formDataProfessionID','Profession')">
-                                                                        <span class="input-group-text input-group-text2">
-                                                                            <i class="fa fa-external-link-alt"></i>
-                                                                        </span>
+                                            <span class="input-group-text input-group-text2">
+                                                <i class="fa fa-external-link"></i>
+
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -166,16 +168,17 @@
                                             </span>
                                         </div>
                                         <select type="text" id="formDataIndustryID" name="formDataIndustryID" class="form-control">
-                                            <option>  </option>
+                                            <option value="0"> - </option>
                                             @foreach($groups as $group)
                                             <option value="{{$group->id}}"> {{$group->name}}  </option>
                                             @endforeach
                                     </select>
-                                        <div class="input-group-append" onclick="QuickAdd(10,'formDataIndustryID','Industry')">
-                                            <span class="input-group-text input-group-text2">
-                                                <i class="fa fa-external-link-alt"></i>
-                                            </span>
-                                        </div>
+                                    <div class="input-group-append" onclick="QuickAdd(9,'formDataProfessionID','Profession')">
+                                        <span class="input-group-text input-group-text2">
+                                            <i class="fa fa-external-link"></i>
+
+                                        </span>
+                                    </div>
                                     </div>
                                 </div>
                             </div>

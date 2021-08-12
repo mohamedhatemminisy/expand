@@ -853,6 +853,26 @@ footer{
     margin-bottom:10px;
   text-align: right;
 }
+.hide{
+  display: none;
+}
+.fa{
+  font-weight: 900;
+  font-style: normal;
+  font-size: 15pt;
+}
+.dropdown-toggle::after {
+  font-size: .8rem;
+  font-family: LineAwesome;
+  content: '\f110'!important;
+  border: none!important;
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: 0 6px 0 2px;
+  margin: 0 0 0 .3em;
+  vertical-align: 0;
+}
 
 #malDesc{
     height:70px !important;
@@ -923,9 +943,7 @@ footer{
   top:15px;
 }
 }
-#nav_expanded_nav {
-  visibility: hidden;
-}
+
 .success_alert{
 	visibility: hidden;
 }

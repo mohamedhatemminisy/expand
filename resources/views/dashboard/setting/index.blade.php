@@ -9,7 +9,7 @@
         <div class="col-sm-12 col-lg-6 col-md-12">
             <div class="card leftSide">
                 <div class="card-header">
-                    <h4 class="card-title"><img src="https://db.expand.ps/images/info.png" width="32" height="32">
+                    <h4 class="card-title"><img src="{{asset('assets/images/ico/info.png')}}" width="32" height="32">
                     {{trans('admin.setting')}}</h4>
                 </div>
                 <hr>
