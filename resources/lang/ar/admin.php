@@ -138,5 +138,13 @@ return [
     'supplier_name' => 'اسم المورد',
     'space_office'  => 'مكتب مساحة',
 
+
+    'assets'   =>  'الأصول',
+    'dev_equp'   =>  'أجهزة ومعدات',
+    'vehicles'   =>  'مركبات',
+    'buildings'   =>  'مباني',
+    'Gardens_lands'   =>  'حدائق وأراضي',
+    'warehouses'   =>  'مستودعات',
+
 ];
  
